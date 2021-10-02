@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Deloy CICD
+          Learn React ok
         </a>
         <h1>Con CAc</h1>
       </header>
