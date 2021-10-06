@@ -8,7 +8,9 @@ on:
     branches: [master]
   pull_request:
     branches: [master]
-
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -40,7 +42,7 @@ jobs:
         run: npm run build
       - name: Build notification
         if: always()
-        uses: ManhTai01/my-app@master
+        uses: actions/checkout@v2
         with:
           channel: "#builds"
           status: ${{ job.status }}
@@ -49,7 +51,6 @@ jobs:
           cancelled_text: "Build (#${env.GITHUB_RUN_NUMBER}) was cancelled"
           fields: |
             [{ "title": "Action URL", "value": "${env.GITHUB_SERVER_URL}/${env.GITHUB_REPOSITORY}/actions/runs/${env.GITHUB_RUN_ID}"}]
-
 
       - name: Deploy
         run: |
@@ -64,14 +65,13 @@ jobs:
           repository: ${{ github.repository }}
       - name: Deploy notification
         if: always()
-        uses: ManhTai01/my-app@master
+        uses: actions/checkout@v2
         with:
-          channel: '#deployments'
+          channel: "#deployments"
           status: ${{ job.status }}
-          success_text: 'Deployment (#${env.GITHUB_RUN_NUMBER}) completed successfully'
-          failure_text: 'Deployment (#${env.GITHUB_RUN_NUMBER}) failed'
-          cancelled_text: 'Deployment (#${env.GITHUB_RUN_NUMBER}) was cancelled'
+          success_text: "Deployment (#${env.GITHUB_RUN_NUMBER}) completed successfully"
+          failure_text: "Deployment (#${env.GITHUB_RUN_NUMBER}) failed"
+          cancelled_text: "Deployment (#${env.GITHUB_RUN_NUMBER}) was cancelled"
           fields: |
             [{ "title": "Host", "value": "${{ secrets.DEPLOY_HOST }}"},
             { "title": "Action URL", "value": "${env.GITHUB_SERVER_URL}/${env.GITHUB_REPOSITORY}/actions/runs/${env.GITHUB_RUN_ID}"}]
-
