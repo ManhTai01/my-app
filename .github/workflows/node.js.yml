@@ -60,6 +60,6 @@ jobs:
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
         with:
-          channel: "#alerts"
+          channel: "#general"
           text: "Something is happening and someone should probably panic"
           color: "danger"
