@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React slack
+          Learn React slackậ jhasjdasdjklkasd
         </a>
         <h1>Con CAc</h1>
       </header>
