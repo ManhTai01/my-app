@@ -17,7 +17,6 @@ function App() {
         >
           Learn React slack
         </a>
-        <h1>Con CAc</h1>
       </header>
     </div>
   );
