@@ -55,7 +55,6 @@ jobs:
     name: Notify on Slack
     runs-on: ubuntu-latest
     needs: [build]
-    if: ${{ github.base_ref == 'master'}}
     steps:
       - uses: pullreminders/slack-action@master
         env:
